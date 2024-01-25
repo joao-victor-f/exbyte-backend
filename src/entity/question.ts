@@ -3,11 +3,13 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import Image from './image';
 import Category from './category';
+import User from './user';
 
 @Entity()
 export default class Question {
@@ -35,4 +37,7 @@ export default class Question {
 
   @Column({ default: Date.now() })
   createdAt: Date;
+
+  @ManyToOne(() => User, (user) => user.questions)
+  author: User;
 }
