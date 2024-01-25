@@ -7,9 +7,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import Image from './image';
-import Category from './category';
-import User from './user';
+
+import Image from '../image/image';
+import Category from '../category/category';
+import User from '../user/user';
 
 @Entity()
 export default class Question {
