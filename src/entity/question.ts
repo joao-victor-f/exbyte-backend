@@ -29,4 +29,7 @@ export default class Question {
   @ManyToMany(() => Category)
   @JoinTable()
   categories: Category[];
+
+  @Column({ default: false })
+  isAnswered: boolean;
 }
