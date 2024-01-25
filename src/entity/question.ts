@@ -32,4 +32,7 @@ export default class Question {
 
   @Column({ default: false })
   isAnswered: boolean;
+
+  @Column({ default: Date.now() })
+  createdAt: Date;
 }
