@@ -1,15 +1,11 @@
 import { Exclude, Expose } from 'class-transformer';
-import { IsEmail, IsString, MinLength } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
 
 @Exclude()
 export default class SignInDTO {
   @Expose()
   @IsString()
-  username?: string;
-
-  @Expose()
-  @IsEmail()
-  email?: string;
+  username: string;
 
   @MinLength(6)
   @IsString()
