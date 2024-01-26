@@ -5,11 +5,11 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
 export default class SignInDTO {
   @Expose()
   @IsString()
-  username: string;
+  username?: string;
 
   @Expose()
   @IsEmail()
-  email: string;
+  email?: string;
 
   @MinLength(6)
   @IsString()
