@@ -15,7 +15,6 @@ import { CategoryModule } from './category/category.module';
       password: process.env.DB_PASSWORD,
       username: process.env.DB_USERNAME,
       database: process.env.SCHEMA_NAME,
-      entities: ['./entity/*.ts'],
       synchronize: true,
       autoLoadEntities: true,
     }),
