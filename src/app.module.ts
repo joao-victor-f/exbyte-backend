@@ -16,9 +16,10 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.SCHEMA_NAME,
       entities: ['./entity/*.ts'],
       synchronize: true,
+      autoLoadEntities: true,
     }),
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
