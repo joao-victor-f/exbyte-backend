@@ -17,4 +17,7 @@ export default class User {
 
   @OneToMany(() => Question, (question) => question.author)
   questions: Question[];
+
+  @Column({ type: Date, default: Date.now() })
+  createdAt: Date;
 }
