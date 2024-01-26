@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import Image from '../image/image';
 import Category from '../category/category';
 import User from '../user/user';
 
@@ -25,9 +24,6 @@ export default class Question {
 
   @Column()
   likes: number;
-
-  @OneToMany(() => Image, (image) => image.question)
-  images: Image[];
 
   @ManyToMany(() => Category)
   @JoinTable()
