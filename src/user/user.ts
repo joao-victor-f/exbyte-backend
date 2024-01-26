@@ -1,4 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import Question from '../question/question';
 
 @Entity()
@@ -17,7 +23,4 @@ export default class User {
 
   @OneToMany(() => Question, (question) => question.author)
   questions: Question[];
-
-  @Column({ type: Date, default: Date.now() })
-  createdAt: Date;
 }
