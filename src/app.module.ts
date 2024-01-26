@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './category/category.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { CategoryModule } from './category/category.module';
       autoLoadEntities: true,
     }),
     CategoryModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
