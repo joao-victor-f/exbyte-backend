@@ -18,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USERNAME,
       database: process.env.SCHEMA_NAME,
       synchronize: true,
+      autoLoadEntities: true,
     }),
     CategoryModule,
     UserModule,
