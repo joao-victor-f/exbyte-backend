@@ -21,7 +21,7 @@ export default class Question {
   @Column({ type: 'text' })
   content: string;
 
-  @Column()
+  @Column({ default: 0 })
   likes: number;
 
   @ManyToMany(() => Category)
