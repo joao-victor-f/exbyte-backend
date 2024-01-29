@@ -31,9 +31,16 @@ export default class Question {
   @Column({ default: false })
   isAnswered: boolean;
 
-  @Column({ default: Date.now() })
-  createdAt: Date;
-
   @ManyToOne(() => User, (user) => user.questions)
   author: User;
+
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @Column({
+    type: 'datetime',
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
+  updatedAt: Date;
 }
