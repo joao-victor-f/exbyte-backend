@@ -8,7 +8,7 @@ export default class QuestionService {
   constructor(
     @InjectRepository(Question)
     private readonly questionRepository: Repository<Question>,
-  ) {}
+  ) { }
 
   findAll(): Promise<Question[]> {
     return this.questionRepository.find();
