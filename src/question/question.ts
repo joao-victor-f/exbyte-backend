@@ -4,11 +4,13 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import Category from '../category/category';
 import User from '../user/user';
+import Comment from 'src/comment/comment';
 
 @Entity()
 export default class Question {
@@ -43,4 +45,7 @@ export default class Question {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.question)
+  comments: Comment[];
 }

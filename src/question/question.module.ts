@@ -5,4 +5,4 @@ import Question from './question';
 @Module({
   imports: [TypeOrmModule.forFeature([Question])],
 })
-export default class QuestionModule { }
+export default class QuestionModule {}

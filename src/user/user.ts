@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Question from '../question/question';
+import Comment from 'src/comment/comment';
 
 @Entity()
 export default class User {
@@ -27,4 +28,7 @@ export default class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.author)
+  comments: Comment[];
 }
