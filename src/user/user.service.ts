@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import User from './user';
 import CreateUserDTO from './dto/createUserDTO';
+import ReadUserDTO from './dto/readUserDTO';
 
 @Injectable()
 export default class UserService {
@@ -14,8 +15,8 @@ export default class UserService {
   async findOneBy(filter: {
     id?: number;
     username?: string;
-  }): Promise<any | null> {
-    return this.userRepository
+  }): Promise<ReadUserDTO | null> {
+    const response = await this.userRepository
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.questions', 'question')
       .select([
@@ -23,14 +24,21 @@ export default class UserService {
         'question.title',
         'question.likes',
         'question.createdAt',
+        'user.id',
         'user.username',
         'user.createdAt',
       ])
       .where(filter)
-      .getMany();
+      .getOne();
+
+    return response as ReadUserDTO;
   }
 
   async create(createUserDTO: CreateUserDTO): Promise<User> {
     return this.userRepository.save(createUserDTO);
+  }
+
+  async getProfile(username: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ username });
   }
 }

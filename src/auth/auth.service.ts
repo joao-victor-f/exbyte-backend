@@ -8,6 +8,7 @@ import SignInDTO from './signInDTO';
 import { JwtService } from '@nestjs/jwt';
 import CreateUserDTO from 'src/user/dto/createUserDTO';
 import * as bcrypt from 'bcrypt';
+import User from 'src/user/user';
 
 @Injectable()
 export default class AuthService {
@@ -17,9 +18,7 @@ export default class AuthService {
   ) {}
 
   async signIn(signinDTO: SignInDTO): Promise<{ accessToken: string }> {
-    const user = await this.userService.findOneBy({
-      username: signinDTO.username,
-    });
+    const user = await this.userService.getProfile(signinDTO.username);
 
     if (!user) {
       throw new NotFoundException();
