@@ -1,10 +1,35 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { CategoryModule } from './category/category.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { CommentModule } from './comment/comment.module';
+import { QuestionModule } from './question/question.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT as unknown as number,
+      password: process.env.DB_PASSWORD,
+      username: process.env.DB_USERNAME,
+      database: process.env.SCHEMA_NAME,
+      synchronize: true,
+      autoLoadEntities: true,
+    }),
+    CategoryModule,
+    UserModule,
+    AuthModule,
+    UserModule,
+    CommentModule,
+    QuestionModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
