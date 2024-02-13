@@ -8,7 +8,6 @@ import SignInDTO from './signInDTO';
 import { JwtService } from '@nestjs/jwt';
 import CreateUserDTO from 'src/user/dto/createUserDTO';
 import * as bcrypt from 'bcrypt';
-import User from 'src/user/user';
 
 @Injectable()
 export default class AuthService {
