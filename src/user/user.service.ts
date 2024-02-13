@@ -9,17 +9,25 @@ export default class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) { }
-
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
-  }
+  ) {}
 
   async findOneBy(filter: {
     id?: number;
     username?: string;
-  }): Promise<User | null> {
-    return this.userRepository.findOneBy(filter);
+  }): Promise<any | null> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.questions', 'question')
+      .select([
+        'question.id',
+        'question.title',
+        'question.likes',
+        'question.createdAt',
+        'user.username',
+        'user.createdAt',
+      ])
+      .where(filter)
+      .getMany();
   }
 
   async create(createUserDTO: CreateUserDTO): Promise<User> {
